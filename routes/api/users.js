@@ -7,9 +7,11 @@ var auth = require('../auth');
 router.get('/user', auth.required, function(req, res, next){
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
-
+   
     return res.json({user: user.toAuthJSON()});
-  }).catch(next);
+  }, err => {
+    next(err);
+  });
 });
 
 router.put('/user', auth.required, function(req, res, next){
@@ -35,10 +37,13 @@ router.put('/user', auth.required, function(req, res, next){
 
     return user.save().then(function(){
       return res.json({user: user.toAuthJSON()});
+    }, err => {
+      next(err);
     });
-  }).catch(next);
+  });
 });
 
+// user login
 router.post('/users/login', function(req, res, next){
   if(!req.body.user.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
@@ -60,16 +65,19 @@ router.post('/users/login', function(req, res, next){
   })(req, res, next);
 });
 
+// creating a new user
 router.post('/users', function(req, res, next){
+  //console.log(req.body.user);
   var user = new User();
 
   user.username = req.body.user.username;
   user.email = req.body.user.email;
   user.setPassword(req.body.user.password);
-
   user.save().then(function(){
     return res.json({user: user.toAuthJSON()});
-  }).catch(next);
+  }, err => {
+      next(err);
+    });
 });
 
 module.exports = router;
