@@ -189,7 +189,7 @@ describe('e2e test : users API route',() =>{
         });
     });
 
-    // testing the user login route
+    // testing the user GET route
     describe('GET /api/user', ()=>{
         it('should fetch a specific authorized user only',(done)=>{
             chai.request(server)
