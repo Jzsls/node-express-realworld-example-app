@@ -16,6 +16,7 @@ To get the Node server running locally:
 - `npm install` to install all required dependencies
 - Install MongoDB Community Edition ([instructions](https://docs.mongodb.com/manual/installation/#tutorials)) and run it by executing `mongod`
 - `npm run dev` to start the local server
+- See the 'E2E users route testing' section for details on testing mechanism of this app
 
 Alternately, to quickly try out this repo in the cloud, you can [![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/remix/realworld)
 
@@ -48,7 +49,14 @@ Requests are authenticated using the `Authorization` header with a valid JWT. We
 
 ## E2E users route testing
 
-Endpoint testing of complete users authenticated route is being done using Mocha JS Framework and Chai Assertions. These are demo testcases to understnnd automation testing in Mocha and Chai. Testing of users route is carred out in multiple unit tests (it blocks) of Chai which make it easiear for the reader to understand the overall E2E concept. Clean code practice is being observed by commenting every test senario, using root hook to clean database after all tests are being carried. Though one bug is being found in the functionality of the users post login route. The api should only allow the users to login who type complete and correct password but rather it give 200 http "o.k" response on empty password string. which is a functionality failure of the users post login route. For quick understanding a Mochawesome HTML report is also being added for referance. After completeing the above mentioned prerequisites to run the app along with Mocha, Chai, Chai-http and Mochawesome report generator, E2E users api test can be run by simply typing "npm run test-html". I hope it will give you a good understanding of running unit as well as e2e tests using Mocha, Chai and Mochawesome report generator.    
+Endpoint(backend) testing of complete users authenticated route is being done using Mocha JS Framework and Chai Assertions. These are demo testcases to understnnd automation testing in Mocha and Chai. 
+- Testing of users route is carred out in multiple unit tests (it blocks) of Chai which make it easiear for the reader to understand the overall E2E concept.
+- Clean code practice is being observed by commenting every test senario, using root hook to clean database after all tests are being carried.
+- Though one bug is being found in the functionality of the users post login route. The api should only allow the users to login who type complete and correct password but rather it give 200 http "o.k" response on empty password string. Which is a functionality failure of the users post login route.
+- For quick understanding a Mochawesome HTML report is also being added for referance.
+- After completeing the above mentioned prerequisites to run the app along with Mocha, Chai, Chai-http and Mochawesome report generator, E2E users api test can be run by simply typing `npm run test-html`.
+
+I hope it will give you a good understanding of running unit as well as e2e tests using Mocha, Chai and Mochawesome report generator.    
 <br />
 
 [![Brought to you by Thinkster](https://raw.githubusercontent.com/gothinkster/realworld/master/media/end.png)](https://thinkster.io)
